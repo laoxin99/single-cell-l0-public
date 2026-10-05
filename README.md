@@ -1,28 +1,48 @@
-# L0 Single-Cell Public Documentation
+# L0 单细胞最小公开运行 fixture
 
-This repository is a separate public documentation surface for the L0 single-cell project. It is not part of CognitiveBridge and does not mix with the CognitiveBridge repositories.
+这是从 `cell_l0_demo` 的环境与感觉层概念中抽取并重新整理的、可独立运行的最小公开代码包。
 
-## What can be stated publicly
+它展示一条受限的生理流程：
 
-- The L0 single-cell main chain has been completed and closed in the project records; a formal single-cell baseline has been established.
-- The public scope is a minimal physiology loop: environmental cues, local sensing, physiological input, homeostasis / life-axis state, behavior selection, action, and metabolic updates.
-- The registered high-level subsystems include a growth ledger, membrane integrity, binary-division instantiation, waste / excretion, dormancy / low metabolism, and chemotaxis.
-- In the registered baseline with fixed seeds 101–120 over 20 runs, division occurred in 20/20 runs and the median first division was 21. Full distributions and additional conditions remain in the internal evidence record.
+```text
+局部物理信号 → 感觉采样 → 生理输入 → 受限行为 → 状态更新
+```
 
-## What this does not claim
+公开代码只包含：
 
-- This is not a full V12/V13 port or a complete theory-level biological model.
-- It is not proof that digital life, AGI, or production-grade biological simulation has been completed.
-- Multi-generation evolution remains a next-stage problem and is excluded from the L0 completion claim.
-- Private source trees, internal logs, unreviewed branches, credentials, and external service configuration are not published.
+- `cell_env.py`：固定二维物理场；
+- `l0_sensing.py`：前、左、右探针与生理输入转换；
+- `public_l0.py`：无界面、确定性的最小运行 fixture；
+- `test_public_l0.py`：本包的独立测试。
 
-## Runtime status
+## 运行
 
-This repository provides public documentation, evidence summaries, and boundaries only. Runtime code is deferred because the current execution chain depends on an internal adjudication module. See `CODE_PAYLOAD_STATUS.md`.
+要求：Python 3.10 或更高版本；不需要第三方依赖、网络、API key 或外部服务。
 
-## Start here
+在本目录执行：
 
-1. `ANNOUNCEMENT_BILINGUAL.md`
-2. `EVIDENCE_SUMMARY.md`
-3. `PUBLIC_BOUNDARY.md`
-4. `SOURCE_REGISTRATION.md`
+```powershell
+python -B public_l0.py
+python -B -m unittest -v test_public_l0.py
+```
+
+固定 fixture 的当前结果：
+
+```text
+runs=20
+division=20/20
+median_first_division=21
+```
+
+## 如何理解结果
+
+这些数字只表示本包固定输入下的可重复 fixture 结果，不是现实生物学结论，不是完整项目 runtime 的复现，也不代表数字生命、通用智能或生产级系统已经完成。
+
+本 fixture 验证的是物理信号到行为标签的最小链路，不验证二维空间导航或真实转向动力学。
+
+本包与 `CognitiveBridge` 仓库、后续私有主线和任何未审核代码保持独立。审核说明、清单和许可证状态文件只用于本次审核，不属于运行依赖。
+
+## 许可证
+
+本包当前不包含 `LICENSE`。公开查看不等于获得复制、修改、再发布或商业使用许可；许可证需另行决定。
+

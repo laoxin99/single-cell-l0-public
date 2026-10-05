@@ -1,0 +1,6 @@
+fixture=l0-public-minimal
+dependencies=python-standard-library+2-local-modules
+runs=20
+division=20/20
+median_first_division=21
+boundary=fixture-only; not a full project runtime

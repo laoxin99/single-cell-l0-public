@@ -1,14 +1,14 @@
-# 运行时代码载荷状态
+# 代码载荷状态
 
-状态：`DEFERRED / NOT INCLUDED`
+```text
+public runtime payload = INCLUDED / MINIMAL FIXTURE ONLY
+source full runtime = NOT INCLUDED
+private state/logs = NOT INCLUDED
+experiment scripts = NOT INCLUDED
+credentials/provider = NOT INCLUDED
+```
 
-原因：当前 `single_cell_demo` 的运行链由 `v12_l0_core/l0_kernel.py` 间接导入 `v12_l0_core/reaction_core.py`。该依赖包含更高层内部裁决实现，不能在没有单独边界审核和所有者授权的情况下随候选包公开。
+本包只有四个 `.py` 文件，且四个文件都在本目录根部。它们不从目录外导入模块，不读取目录外文件，不创建日志文件。
 
-因此本包暂不声称：
-
-- 已提供可独立运行的公开代码发行版；
-- 已公开完整 L0 runtime；
-- 已把当前项目全部源码纳入公开范围。
-
-后续若要公开代码，应另建窄包，逐文件审核依赖、路径、敏感内容和运行结果；不得直接把整个 `cell_l0_demo` 目录压入公开仓库。
+`public_l0.py` 的职责是让审核者能在无网络环境中复现一条最小、可解释的 L0 fixture；它不是完整项目运行时，也不包含内部裁决链。
 
